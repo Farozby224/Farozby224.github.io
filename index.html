@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farozby Tech Dev — Applications mobiles, web & solutions digitales</title>
+<meta name="description" content="Farozby Tech Dev conçoit des applications mobiles, des sites web et des solutions digitales sur mesure : finance, productivité, IA générative. Mobile | Web | Sites.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1530;        /* bleu nuit profond */
+    --paper:#F7F8FB;      /* fond clair froid */
+    --azure:#1E7BF0;      /* bleu électrique (identité Farozby) */
+    --azure-dark:#1259B8;
+    --steel:#E3E8F2;
+    --muted:#535B75;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+    font-size:16px;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15}
+
+  /* Bande circuit — signature */
+  .circuit{
+    height:6px;
+    background:linear-gradient(90deg,var(--ink) 0%,var(--azure) 50%,var(--ink) 100%);
+  }
+
+  .wrap{max-width:680px;margin:0 auto;padding:0 22px}
+
+  header{padding:18px 0 0}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem}
+  .brand .dot{width:12px;height:12px;background:var(--azure);border-radius:3px;transform:rotate(45deg)}
+  .brand small{font-weight:500;color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+
+  .hero{padding:54px 0 44px}
+  .hero .eyebrow{
+    display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--azure-dark);margin-bottom:14px;
+  }
+  .hero h1{font-size:clamp(2rem,7vw,2.9rem);font-weight:700;margin-bottom:16px}
+  .hero h1 em{font-style:normal;color:var(--azure)}
+  .hero p{color:var(--muted);max-width:48ch}
+
+  section{padding:40px 0}
+  .label{
+    font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:500;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    border-bottom:2px solid var(--steel);padding-bottom:8px;margin-bottom:24px;
+  }
+
+  .app{
+    background:#fff;border:1px solid var(--steel);border-radius:14px;
+    padding:20px;margin-bottom:14px;
+    display:flex;flex-direction:column;gap:6px;
+  }
+  .app .top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .app h3{font-size:1.15rem}
+  .badge{
+    font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+    padding:4px 10px;border-radius:99px;white-space:nowrap;
+    background:#E5F0FE;color:var(--azure-dark);
+  }
+  .app p{color:var(--muted);font-size:.95rem}
+  .app a.store{
+    margin-top:8px;align-self:flex-start;
+    font-weight:600;font-size:.9rem;color:var(--azure-dark);text-decoration:none;
+    border-bottom:2px solid var(--azure);padding-bottom:1px;
+  }
+  .app a.store:hover{color:var(--azure)}
+
+  .services{display:flex;flex-direction:column;gap:12px}
+  .service{
+    background:#fff;border:1px solid var(--steel);border-radius:14px;
+    padding:18px 20px;
+  }
+  .service h3{font-size:1.02rem;margin-bottom:4px}
+  .service p{color:var(--muted);font-size:.93rem}
+
+  .about p+p{margin-top:12px}
+  .about strong{color:var(--ink)}
+
+  .contact-card{
+    background:var(--ink);color:var(--paper);border-radius:14px;
+    padding:26px 22px;
+  }
+  .contact-card h3{font-size:1.2rem;margin-bottom:8px}
+  .contact-card p{color:#BCC4DC;font-size:.95rem;margin-bottom:16px}
+  .contact-card .btns{display:flex;flex-wrap:wrap;gap:10px}
+  .contact-card a{
+    display:inline-block;text-decoration:none;
+    font-weight:600;font-size:.95rem;padding:11px 20px;border-radius:9px;
+  }
+  .contact-card a.mail{background:var(--azure);color:#fff}
+  .contact-card a.mail:hover{background:var(--azure-dark)}
+  .contact-card a.wa{background:#1FAF54;color:#fff}
+  .contact-card a.wa:hover{background:#178A42}
+  .contact-card a:focus-visible,a:focus-visible{outline:3px solid var(--azure);outline-offset:3px}
+
+  .privacy p{color:var(--muted);font-size:.93rem}
+  .privacy p+p{margin-top:10px}
+
+  footer{padding:28px 0 36px;color:var(--muted);font-size:.85rem}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between}
+  footer .motto{font-family:'Space Grotesk',sans-serif;letter-spacing:.18em;text-transform:uppercase;font-size:.72rem}
+</style>
+</head>
+<body>
+
+<div class="circuit" aria-hidden="true"></div>
+
+<header class="wrap">
+  <div class="brand">
+    <span class="dot" aria-hidden="true"></span>
+    <span>Farozby Tech Dev&nbsp; <small>Mobile · Web · Sites</small></span>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <span class="eyebrow">Développeur d'applications mobiles</span>
+    <h1>Vos applications & sites web, <em>sur mesure</em>.</h1>
+    <p>Des solutions digitales performantes, modernes et évolutives : applications mobiles publiées sur Google Play, sites web et intégrations d'IA générative.</p>
+  </div>
+
+  <section class="wrap" id="apps">
+    <div class="label">Applications sur Google Play</div>
+
+    <article class="app">
+      <div class="top">
+        <h3>Monio — Budget & Dépenses</h3>
+        <span class="badge">Disponible</span>
+      </div>
+      <p>Suivez vos dépenses et maîtrisez votre budget avec une interface moderne, rapide et intuitive.</p>
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.monio">Voir sur Google Play →</a>
+    </article>
+
+    <article class="app">
+      <div class="top">
+        <h3>Scanio — Scan PDF & OCR</h3>
+        <span class="badge">Disponible</span>
+      </div>
+      <p>Scannez vos documents en PDF de qualité, extrayez le texte par OCR et profitez d'outils IA intégrés.</p>
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.scanio">Voir sur Google Play →</a>
+    </article>
+
+    <article class="app">
+      <div class="top">
+        <h3>SnapCurrency — Devises</h3>
+        <span class="badge">Disponible</span>
+      </div>
+      <p>Convertissez les devises instantanément, où que vous soyez, avec un mode hors ligne pratique en voyage.</p>
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.snap">Voir sur Google Play →</a>
+    </article>
+
+    <article class="app">
+      <div class="top">
+        <h3>Walleta — Budget & Dépenses</h3>
+        <span class="badge">Disponible</span>
+      </div>
+      <p>Gérez vos finances personnelles simplement : dépenses, revenus et budgets dans une appli claire et efficace.</p>
+      <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.walleta">Voir sur Google Play →</a>
+    </article>
+  </section>
+
+  <section class="wrap" id="services">
+    <div class="label">Services</div>
+    <div class="services">
+      <div class="service">
+        <h3>📱 Applications mobiles</h3>
+        <p>Des applis fluides, rapides et pensées pour vos utilisateurs, publiées sur les stores.</p>
+      </div>
+      <div class="service">
+        <h3>🌐 Sites & applications web</h3>
+        <p>Des sites modernes, sécurisés et optimisés pour la croissance de votre activité.</p>
+      </div>
+      <div class="service">
+        <h3>🤖 Design & IA générative</h3>
+        <p>Un design impactant et des solutions intelligentes boostées par l'intelligence artificielle.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap about" id="apropos">
+    <div class="label">À propos</div>
+    <p><strong>Farozby Tech Dev</strong> est le studio d'un développeur indépendant spécialisé dans les applications mobiles et les solutions digitales sur mesure. Chaque produit est conçu pour être léger, fiable et agréable à utiliser, du premier écran jusqu'à la publication.</p>
+    <p>En parallèle du développement, je produis du contenu vidéo professionnel sous la marque <strong>BMPROD Studio</strong> : montage, clips et créations visuelles.</p>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="label">Contact</div>
+    <div class="contact-card">
+      <h3>Un projet, une question, un devis ?</h3>
+      <p>Tarif selon votre projet — contactez-moi pour un devis personnalisé. Je réponds personnellement à chaque message.</p>
+      <div class="btns">
+        <a class="wa" href="https://wa.me/224620973774">WhatsApp</a>
+        <a class="mail" href="mailto:farozbytech224@gmail.com">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap privacy" id="confidentialite">
+    <div class="label">Confidentialité</div>
+    <p>Les applications Farozby Tech Dev respectent votre vie privée. Aucune création de compte n'est obligatoire et aucune donnée personnelle n'est revendue à des tiers.</p>
+    <p>Certaines applications affichent des publicités via Google AdMob, qui peut collecter des identifiants publicitaires conformément aux règles de Google. Pour toute question relative à vos données, contactez-moi via les coordonnées ci-dessus.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Farozby Tech Dev</span>
+    <span class="motto">Innover · Développer · Réussir</span>
+  </div>
+</footer>
+
+<div class="circuit" aria-hidden="true"></div>
+
+</body>
+</html>
