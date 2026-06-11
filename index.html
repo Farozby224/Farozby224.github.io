@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farozby Tech Dev — Applications mobiles, web & IA</title>
+<meta name="description" content="Farozby Tech Dev conçoit des applications mobiles publiées sur Google Play, des sites web modernes et des solutions boostées par l'IA. Mobile | Web | Sites.">
+<meta name="theme-color" content="#050A1E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050A1E;
+    --bg2:#081130;
+    --card:rgba(255,255,255,.045);
+    --line:rgba(140,170,255,.14);
+    --azure:#2D8CFF;
+    --cyan:#53D5FF;
+    --text:#EAF0FF;
+    --muted:#94A0C2;
+    --green:#22C55E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    font-size:16px;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.12}
+  ::selection{background:var(--azure);color:#fff}
+
+  /* ===== Fond lumineux ===== */
+  .glow{position:fixed;border-radius:50%;filter:blur(110px);z-index:-2;pointer-events:none}
+  .glow.g1{width:520px;height:520px;top:-180px;right:-160px;background:rgba(45,140,255,.22)}
+  .glow.g2{width:420px;height:420px;top:40%;left:-200px;background:rgba(83,213,255,.10)}
+  .glow.g3{width:460px;height:460px;bottom:-160px;right:-120px;background:rgba(45,140,255,.13)}
+  .grid-bg{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(140,170,255,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(140,170,255,.05) 1px,transparent 1px);
+    background-size:46px 46px;
+    mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%);
+    -webkit-mask-image:radial-gradient(ellipse 90% 60% at 50% 0%,#000 30%,transparent 75%);
+  }
+
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    background:rgba(5,10,30,.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--text)}
+  .logo{
+    width:38px;height:38px;border-radius:11px;flex:none;
+    background:linear-gradient(135deg,var(--cyan),var(--azure) 60%,#1450C8);
+    display:grid;place-items:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.15rem;color:#fff;
+    box-shadow:0 0 22px rgba(45,140,255,.55);
+  }
+  .brand b{font-family:'Space Grotesk',sans-serif;font-size:1rem;letter-spacing:.01em}
+  .brand small{display:block;font-weight:500;color:var(--muted);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;margin-top:1px}
+  .nav a.cta{
+    font-size:.85rem;font-weight:600;text-decoration:none;color:#fff;
+    padding:9px 18px;border-radius:99px;
+    background:linear-gradient(135deg,var(--azure),#1450C8);
+    box-shadow:0 0 18px rgba(45,140,255,.45);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .nav a.cta:hover{transform:translateY(-1px);box-shadow:0 0 28px rgba(45,140,255,.7)}
+
+  /* ===== Hero ===== */
+  .hero{padding:74px 0 60px;text-align:left}
+  .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.76rem;font-weight:600;letter-spacing:.05em;
+    color:var(--cyan);
+    border:1px solid rgba(83,213,255,.35);
+    background:rgba(83,213,255,.07);
+    padding:7px 15px;border-radius:99px;margin-bottom:22px;
+  }
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .hero h1{
+    font-size:clamp(2.35rem,8.5vw,3.6rem);font-weight:700;
+    letter-spacing:-.02em;margin-bottom:20px;
+  }
+  .hero h1 .grad{
+    background:linear-gradient(92deg,var(--cyan) 0%,var(--azure) 55%,#7CA8FF 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--muted);max-width:50ch;font-size:1.04rem;margin-bottom:30px}
+  .hero .actions{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    font-weight:600;font-size:.96rem;text-decoration:none;
+    padding:14px 26px;border-radius:13px;transition:transform .2s,box-shadow .2s,background .2s;
+  }
+  .btn.primary{
+    color:#fff;background:linear-gradient(135deg,var(--azure),#1450C8);
+    box-shadow:0 8px 30px rgba(45,140,255,.45);
+  }
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(45,140,255,.65)}
+  .btn.ghost{
+    color:var(--text);border:1px solid var(--line);background:var(--card);
+    backdrop-filter:blur(8px);
+  }
+  .btn.ghost:hover{border-color:rgba(140,170,255,.4);background:rgba(255,255,255,.07)}
+
+  /* ===== Stats ===== */
+  .stats{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+    padding:0 0 14px;
+  }
+  .stat{
+    text-align:center;padding:18px 8px;border-radius:16px;
+    background:var(--card);border:1px solid var(--line);
+  }
+  .stat b{
+    display:block;font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:700;
+    background:linear-gradient(135deg,var(--cyan),var(--azure));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .stat span{font-size:.74rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-weight:500}
+
+  /* ===== Sections ===== */
+  section{padding:58px 0 8px}
+  .sec-head{margin-bottom:30px}
+  .sec-head .tag{
+    font-family:'Space Grotesk',sans-serif;font-size:.74rem;font-weight:600;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--azure);
+    display:flex;align-items:center;gap:12px;margin-bottom:12px;
+  }
+  .sec-head .tag::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(45,140,255,.5),transparent)}
+  .sec-head h2{font-size:clamp(1.6rem,5.5vw,2.1rem);font-weight:700;letter-spacing:-.01em}
+
+  /* ===== Apps ===== */
+  .app{
+    position:relative;overflow:hidden;
+    background:var(--card);border:1px solid var(--line);border-radius:20px;
+    padding:24px;margin-bottom:16px;
+    display:flex;gap:18px;align-items:flex-start;
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    transition:transform .25s,border-color .25s,box-shadow .25s;
+  }
+  .app:hover{transform:translateY(-3px);border-color:rgba(45,140,255,.45);box-shadow:0 16px 44px rgba(0,0,0,.45),0 0 0 1px rgba(45,140,255,.15)}
+  .app::before{
+    content:"";position:absolute;top:0;left:24px;right:24px;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(140,190,255,.5),transparent);
+  }
+  .icon{
+    width:58px;height:58px;border-radius:16px;flex:none;
+    display:grid;place-items:center;
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;
+  }
+  .icon.monio{background:linear-gradient(135deg,#8B5CF6,#6D28D9);box-shadow:0 6px 22px rgba(139,92,246,.45)}
+  .icon.scanio{background:linear-gradient(135deg,#3B82F6,#1D4ED8);box-shadow:0 6px 22px rgba(59,130,246,.45)}
+  .icon.snap{background:linear-gradient(135deg,#F59E0B,#EA580C);box-shadow:0 6px 22px rgba(245,158,11,.42)}
+  .icon.walleta{background:linear-gradient(135deg,#FB923C,#C2410C);box-shadow:0 6px 22px rgba(251,146,60,.42)}
+  .app .body{flex:1;min-width:0}
+  .app .top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:5px}
+  .app h3{font-size:1.13rem;font-weight:600}
+  .badge{
+    font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:5px 11px;border-radius:99px;white-space:nowrap;
+    color:#7CF7AE;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);
+  }
+  .app p{color:var(--muted);font-size:.93rem;margin-bottom:12px}
+  .app a.store{
+    display:inline-flex;align-items:center;gap:7px;
+    font-weight:600;font-size:.88rem;color:var(--cyan);text-decoration:none;
+    transition:gap .2s,color .2s;
+  }
+  .app a.store:hover{gap:11px;color:#fff}
+
+  /* ===== Services ===== */
+  .services{display:grid;gap:14px}
+  @media(min-width:600px){.services{grid-template-columns:repeat(3,1fr)}}
+  .service{
+    background:var(--card);border:1px solid var(--line);border-radius:18px;
+    padding:24px 20px;backdrop-filter:blur(8px);
+    transition:transform .25s,border-color .25s;
+  }
+  .service:hover{transform:translateY(-3px);border-color:rgba(45,140,255,.4)}
+  .service .ic{
+    width:46px;height:46px;border-radius:13px;margin-bottom:16px;
+    display:grid;place-items:center;font-size:1.25rem;
+    background:linear-gradient(135deg,rgba(45,140,255,.25),rgba(83,213,255,.12));
+    border:1px solid rgba(83,213,255,.3);
+  }
+  .service h3{font-size:1rem;font-weight:600;margin-bottom:6px}
+  .service p{color:var(--muted);font-size:.88rem}
+
+  /* ===== About ===== */
+  .about-card{
+    background:linear-gradient(160deg,rgba(45,140,255,.10),rgba(255,255,255,.03) 50%);
+    border:1px solid var(--line);border-radius:20px;padding:28px 24px;
+  }
+  .about-card p{color:#C3CCE6;font-size:.97rem}
+  .about-card p+p{margin-top:14px}
+  .about-card strong{color:#fff}
+
+  /* ===== Contact ===== */
+  .contact-card{
+    position:relative;overflow:hidden;text-align:center;
+    border-radius:24px;padding:46px 26px;
+    background:linear-gradient(150deg,#0B1840,#081130 55%,#0A1C4D);
+    border:1px solid rgba(45,140,255,.35);
+    box-shadow:0 0 60px rgba(45,140,255,.18) inset,0 20px 60px rgba(0,0,0,.4);
+  }
+  .contact-card::before{
+    content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+    width:380px;height:240px;border-radius:50%;
+    background:rgba(45,140,255,.3);filter:blur(80px);
+  }
+  .contact-card h3{font-size:clamp(1.5rem,5.5vw,1.9rem);font-weight:700;margin-bottom:10px;position:relative}
+  .contact-card>p{color:var(--muted);font-size:.97rem;max-width:42ch;margin:0 auto 26px;position:relative}
+  .contact-card .btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;position:relative}
+  .btn.wa{color:#fff;background:linear-gradient(135deg,#25D366,#128C4A);box-shadow:0 8px 26px rgba(37,211,102,.35)}
+  .btn.wa:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(37,211,102,.5)}
+  .price-note{
+    position:relative;margin-top:22px;font-size:.84rem;color:var(--cyan);
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid rgba(83,213,255,.3);background:rgba(83,213,255,.06);
+    padding:8px 16px;border-radius:99px;
+  }
+
+  /* ===== Privacy ===== */
+  .privacy p{color:var(--muted);font-size:.9rem}
+  .privacy p+p{margin-top:10px}
+
+  /* ===== Footer ===== */
+  footer{margin-top:64px;border-top:1px solid var(--line);padding:30px 0 42px;color:var(--muted);font-size:.84rem}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;align-items:center}
+  footer .motto{
+    font-family:'Space Grotesk',sans-serif;letter-spacing:.22em;text-transform:uppercase;font-size:.7rem;
+    background:linear-gradient(90deg,var(--cyan),var(--azure));
+    -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:600;
+  }
+
+  /* ===== Reveal animations ===== */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .pill .dot{animation:none}
+    .btn,.app,.service{transition:none}
+  }
+
+  a:focus-visible{outline:3px solid var(--cyan);outline-offset:3px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<div class="glow g1" aria-hidden="true"></div>
+<div class="glow g2" aria-hidden="true"></div>
+<div class="glow g3" aria-hidden="true"></div>
+<div class="grid-bg" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#">
+      <span class="logo">F</span>
+      <span><b>Farozby Tech Dev</b><small>Mobile · Web · Sites</small></span>
+    </a>
+    <a class="cta" href="#contact">Contactez-moi</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <span class="pill reveal"><span class="dot"></span>Disponible pour vos projets</span>
+    <h1 class="reveal">Vos applications &amp; sites web, <span class="grad">sur mesure.</span></h1>
+    <p class="reveal">Des solutions digitales performantes, modernes et évolutives pour faire grandir votre activité : applications mobiles publiées sur Google Play, sites web et intégrations d'IA générative.</p>
+    <div class="actions reveal">
+      <a class="btn primary" href="#apps">Découvrir mes apps ↓</a>
+      <a class="btn ghost" href="#services">Mes services</a>
+    </div>
+  </div>
+
+  <div class="wrap stats reveal">
+    <div class="stat"><b>4</b><span>Apps publiées</span></div>
+    <div class="stat"><b>100%</b><span>Sur mesure</span></div>
+    <div class="stat"><b>24/7</b><span>Support &amp; suivi</span></div>
+  </div>
+
+  <section class="wrap" id="apps">
+    <div class="sec-head reveal">
+      <div class="tag">Google Play</div>
+      <h2>Mes applications</h2>
+    </div>
+
+    <article class="app reveal">
+      <span class="icon monio">M</span>
+      <div class="body">
+        <div class="top"><h3>Monio</h3><span class="badge">Disponible</span></div>
+        <p>Budget &amp; dépenses — suivez vos finances avec une interface moderne, rapide et intuitive.</p>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.monio">Voir sur Google Play <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="app reveal">
+      <span class="icon scanio">S</span>
+      <div class="body">
+        <div class="top"><h3>Scanio</h3><span class="badge">Disponible</span></div>
+        <p>Scan PDF &amp; OCR — numérisez vos documents, extrayez le texte et profitez d'outils IA intégrés.</p>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.scanio">Voir sur Google Play <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="app reveal">
+      <span class="icon snap">€</span>
+      <div class="body">
+        <div class="top"><h3>SnapCurrency</h3><span class="badge">Disponible</span></div>
+        <p>Convertisseur de devises instantané avec mode hors ligne — l'allié parfait de vos voyages.</p>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.snap">Voir sur Google Play <span>→</span></a>
+      </div>
+    </article>
+
+    <article class="app reveal">
+      <span class="icon walleta">W</span>
+      <div class="body">
+        <div class="top"><h3>Walleta</h3><span class="badge">Disponible</span></div>
+        <p>Budget &amp; dépenses — gérez vos finances personnelles simplement, dans une appli claire et efficace.</p>
+        <a class="store" href="https://play.google.com/store/apps/details?id=com.farozby.walleta">Voir sur Google Play <span>→</span></a>
+      </div>
+    </article>
+  </section>
+
+  <section class="wrap" id="services">
+    <div class="sec-head reveal">
+      <div class="tag">Expertise</div>
+      <h2>Nos services</h2>
+    </div>
+    <div class="services">
+      <div class="service reveal">
+        <div class="ic">📱</div>
+        <h3>Applications mobiles</h3>
+        <p>Des applis fluides, rapides et pensées pour vos utilisateurs, publiées sur les stores.</p>
+      </div>
+      <div class="service reveal">
+        <div class="ic">🌐</div>
+        <h3>Sites &amp; apps web</h3>
+        <p>Des sites modernes, sécurisés et optimisés pour la croissance de votre activité.</p>
+      </div>
+      <div class="service reveal">
+        <div class="ic">🤖</div>
+        <h3>Design &amp; IA générative</h3>
+        <p>Un design impactant et des solutions intelligentes boostées par l'IA.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="apropos">
+    <div class="sec-head reveal">
+      <div class="tag">À propos</div>
+      <h2>Le studio</h2>
+    </div>
+    <div class="about-card reveal">
+      <p><strong>Farozby Tech Dev</strong> est le studio d'un développeur indépendant spécialisé dans les applications mobiles et les solutions digitales sur mesure. Chaque produit est conçu pour être léger, fiable et agréable à utiliser — du premier écran jusqu'à la publication.</p>
+      <p>En parallèle du développement, je produis du contenu vidéo professionnel sous la marque <strong>BMPROD Studio</strong> : montage, clips et créations visuelles.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="contact">
+    <div class="contact-card reveal">
+      <h3>Un projet en tête ?</h3>
+      <p>Je réponds personnellement à chaque message. Parlons de votre idée et donnons-lui vie.</p>
+      <div class="btns">
+        <a class="btn wa" href="https://wa.me/224620973774">💬 WhatsApp</a>
+        <a class="btn primary" href="mailto:farozbytech224@gmail.com">✉️ Email</a>
+      </div>
+      <div class="price-note">🏷️ Tarif selon votre projet — devis personnalisé gratuit</div>
+    </div>
+  </section>
+
+  <section class="wrap privacy" id="confidentialite">
+    <div class="sec-head reveal">
+      <div class="tag">Confidentialité</div>
+      <h2>Vos données protégées</h2>
+    </div>
+    <p class="reveal">Les applications Farozby Tech Dev respectent votre vie privée. Aucune création de compte n'est obligatoire et aucune donnée personnelle n'est revendue à des tiers.</p>
+    <p class="reveal">Certaines applications affichent des publicités via Google AdMob, qui peut collecter des identifiants publicitaires conformément aux règles de Google. Pour toute question relative à vos données, contactez-moi via les coordonnées ci-dessus.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Farozby Tech Dev</span>
+    <span class="motto">Innover · Développer · Réussir</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
